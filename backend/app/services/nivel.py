@@ -36,6 +36,7 @@ def creditar_pontos(
     db: Session,
 ) -> None:
     filho.pontos_saldo = max(0, filho.pontos_saldo + valor)
+    db.add(filho)
     transacao = TransacaoPontos(
         id_filho=filho.id,
         valor=valor,
@@ -61,6 +62,7 @@ def creditar_xp(
 
     novos_niveis = verificar_e_atualizar_nivel(filho, db)
 
+    db.add(filho)
     transacao = TransacaoXp(
         id_filho=filho.id,
         valor=valor,
