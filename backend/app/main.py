@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.config import settings
-from app.routes import auth, familias
+from app.routes import auth, familias, filhos, tarefas
 
 app = FastAPI(
     title="Family Quest API",
@@ -20,6 +20,8 @@ app.add_middleware(
 
 app.include_router(auth.router)
 app.include_router(familias.router)
+app.include_router(filhos.router)
+app.include_router(tarefas.router)
 
 
 @app.get("/api/health")
