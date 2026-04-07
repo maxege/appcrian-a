@@ -1,7 +1,8 @@
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
+    model_config = SettingsConfigDict(extra="ignore", env_file=".env")
     DATABASE_URL: str
     REDIS_URL: str
     SECRET_KEY: str
@@ -20,9 +21,6 @@ class Settings(BaseSettings):
     MERCADO_PAGO_WEBHOOK_SECRET: str = ""
 
     ENVIRONMENT: str = "development"
-
-    class Config:
-        env_file = ".env"
 
 
 settings = Settings()
